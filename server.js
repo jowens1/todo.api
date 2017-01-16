@@ -16,6 +16,11 @@ const router = express.Router();
 // register all routers all routes are prefixed with /api
 app.use('/api', require('./routes/task'));
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // set the port
 const port = parseInt(process.env.PORT, 10) || 8000;
